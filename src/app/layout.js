@@ -1,26 +1,38 @@
-import { Montserrat } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider/ThemeProvider';
+import { Inter, Space_Grotesk } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider/ThemeProvider";
 
-import clsx from 'clsx';
-import Header from '@/components/Header';
+import clsx from "clsx";
+import Header from "@/components/Header";
 
-import './globals.css';
+import "./globals.css";
 
-const montSerrat = Montserrat({
-  variable: '--font-mont-serrat',
-  subsets: ['latin']
+const inter = Inter({
+  variable: "--font-primary",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-secondary",
+  subsets: ["latin"],
 });
 
 export const metadata = {
-  title: 'Rahul Yadav - Software Developer',
-  description: 'To be updated'
+  title: "Rahul Yadav - Software Developer",
+  description: "To be updated",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
-      <body className={clsx(montSerrat.variable, 'antialiased')}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={clsx(inter.variable, spaceGrotesk.variable, "antialiased")}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Header />
 
           {children}
