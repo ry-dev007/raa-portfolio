@@ -16,7 +16,7 @@ const ProfilePicture = () => {
         duration: 2,
         scale: { type: "tween" },
       }}
-      className="relative h-90 w-1/2 px-60 select-none"
+      className="relative mx-auto h-48 w-48 select-none sm:h-64 sm:w-64 md:h-80 md:w-80 lg:h-90 lg:w-90"
     >
       {/* 3D Flip Card Container */}
       <div
