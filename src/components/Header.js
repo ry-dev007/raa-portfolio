@@ -1,10 +1,25 @@
+"use client";
+
 import { ThemeToggle } from "./theme-toggle/ThemeToggle";
 
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import CustomLink from "@/components/common/CustomLink";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const navigationItems = [
     {
       href: "/",
@@ -13,7 +28,7 @@ const Header = () => {
       ariaCurrent: "page",
     },
     {
-      href: "/about",
+      href: "#about",
       children: "About",
       className: "hover:text-primary transition-colors",
     },
@@ -36,11 +51,23 @@ const Header = () => {
     },
   ];
   return (
-    <header className="bg-background w-full border-b py-4 dark:border-gray-800">
+    <header
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
+        isScrolled
+          ? "bg-background/90 border-primary/20 dark:border-primary/30 py-3 shadow-xl backdrop-blur-lg"
+          : "bg-background/95 py-6 backdrop-blur-md dark:border-gray-800"
+      }`}
+    >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
+        animate={{
+          opacity: 1,
+          scale: isScrolled ? 0.98 : 1,
+        }}
+        transition={{
+          opacity: { duration: 2 },
+          scale: { duration: 0.5, ease: "easeInOut" },
+        }}
         className="container mx-auto flex items-center justify-between px-4"
       >
         <motion.div
@@ -63,7 +90,8 @@ const Header = () => {
           </Link>
         </motion.div>
 
-        <nav aria-label="Main Navigation">
+        {/* Desktop Navigation */}
+        <nav aria-label="Main Navigation" className="hidden md:block">
           <ul className="font-secondary flex items-center space-x-8">
             {navigationItems.map((item, index) => (
               <CustomLink
@@ -82,7 +110,61 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+
+        {/* Mobile Menu Button */}
+        <div className="flex items-center space-x-4 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-primary hover:text-primary/80 p-2 transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMobileMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </motion.div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.2 }}
+          className="bg-background/95 border-primary/20 dark:border-primary/30 border-b backdrop-blur-md md:hidden"
+        >
+          <nav className="container mx-auto px-4 py-4">
+            <ul className="font-secondary space-y-4">
+              {navigationItems.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    href={item.href}
+                    className={`block py-2 text-lg ${item.className}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-label={item.ariaLabel}
+                  >
+                    {item.children}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </motion.div>
+      )}
     </header>
   );
 };
