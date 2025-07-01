@@ -67,14 +67,14 @@ export default function Home() {
             >
               <motion.p
                 variants={itemVariants}
-                className="text-primary font-secondary mb-4 text-2xl font-semibold sm:text-3xl"
+                className="text-primary font-secondary mb-6 text-3xl leading-tight font-bold sm:text-4xl"
               >
-                🙏 Namaste, I&apos;m Rahul Yadav
+                Namaste🙏 I&apos;m Rahul
               </motion.p>
 
               <motion.p
                 variants={itemVariants}
-                className="shine-text text-base leading-relaxed sm:text-lg"
+                className="shine-text text-lg leading-relaxed sm:text-xl"
               >
                 I&apos;m a passionate Full-Stack Developer crafting
                 high-performance, scalable, and user-centric web applications.
@@ -99,14 +99,14 @@ export default function Home() {
             >
               <motion.p
                 variants={itemVariants}
-                className="text-primary font-secondary mb-4 text-5xl font-semibold"
+                className="text-primary font-secondary mb-8 text-6xl leading-tight font-bold lg:text-7xl"
               >
-                🙏 Namaste, I&apos;m Rahul Yadav
+                Namaste🙏 I&apos;m Rahul
               </motion.p>
 
               <motion.p
                 variants={itemVariants}
-                className="shine-text max-w-[900px] text-2xl"
+                className="shine-text max-w-[900px] text-xl leading-relaxed lg:text-2xl"
               >
                 I&apos;m a passionate Full-Stack Developer crafting
                 high-performance, scalable, and user-centric web applications.
@@ -203,7 +203,10 @@ export default function Home() {
             </div>
 
             {/* Tech Stack */}
-            <motion.div variants={aboutItemVariants} className="text-center">
+            <motion.div
+              variants={aboutItemVariants}
+              className="mt-16 text-center"
+            >
               <h3 className="text-primary mb-8 text-2xl font-semibold">
                 Technologies I Work With
               </h3>

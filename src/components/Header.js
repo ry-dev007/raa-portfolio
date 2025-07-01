@@ -145,7 +145,7 @@ const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="bg-background/95 border-primary/20 dark:border-primary/30 border-b backdrop-blur-md md:hidden"
+          className="bg-background/95 border-primary/20 dark:border-primary/30 absolute top-full right-0 left-0 z-50 border-b shadow-lg backdrop-blur-md md:hidden"
         >
           <nav className="container mx-auto px-4 py-4">
             <ul className="font-secondary space-y-4">
