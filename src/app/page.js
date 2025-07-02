@@ -3,6 +3,7 @@
 import * as motion from "motion/react-client";
 import ProfilePicture from "@/components/profile-picture/ProfilePicture";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
   const containerVariants = {
@@ -50,6 +51,46 @@ export default function Home() {
         duration: 0.6,
       },
     },
+  };
+
+  // Contact form state
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess("");
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setSuccess(data.message || "Message sent successfully!");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setError(data.error || "Failed to send message.");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -608,7 +649,7 @@ export default function Home() {
                 <h3 className="text-primary text-2xl font-semibold">
                   Send Me a Message
                 </h3>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid gap-6 md:grid-cols-2">
                     <div>
                       <label
@@ -622,6 +663,9 @@ export default function Home() {
                         id="name"
                         className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-900 focus:ring-2 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                         placeholder="Your name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
                       />
                     </div>
                     <div>
@@ -636,6 +680,9 @@ export default function Home() {
                         id="email"
                         className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-900 focus:ring-2 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                         placeholder="your.email@example.com"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -651,6 +698,9 @@ export default function Home() {
                       id="subject"
                       className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-900 focus:ring-2 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                       placeholder="What's this about?"
+                      value={form.subject}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div>
@@ -665,13 +715,23 @@ export default function Home() {
                       rows="6"
                       className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-900 focus:ring-2 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
                       placeholder="Tell me about your project or just say hello!"
+                      value={form.message}
+                      onChange={handleChange}
+                      required
                     ></textarea>
                   </div>
+                  {success && (
+                    <div className="font-medium text-green-600">{success}</div>
+                  )}
+                  {error && (
+                    <div className="font-medium text-red-600">{error}</div>
+                  )}
                   <button
                     type="submit"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-lg px-8 py-3 font-medium transition-colors"
+                    disabled={loading}
                   >
-                    Send Message
+                    {loading ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               </motion.div>
