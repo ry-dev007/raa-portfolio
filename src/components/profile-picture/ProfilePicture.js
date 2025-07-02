@@ -16,11 +16,11 @@ const ProfilePicture = () => {
         duration: 2,
         scale: { type: "tween" },
       }}
-      className="relative mx-auto h-48 w-48 select-none sm:h-64 sm:w-64 md:h-80 md:w-80 lg:h-90 lg:w-90"
+      className="relative mx-auto flex h-48 w-48 items-center justify-center select-none sm:h-64 sm:w-64 md:h-80 md:w-80 lg:h-90 lg:w-90"
     >
       {/* 3D Flip Card Container */}
       <div
-        className="flip-card h-full w-full"
+        className="flip-card flex h-full w-full items-center justify-center"
         onMouseEnter={() => setIsFlipped(true)}
         onMouseLeave={() => setIsFlipped(false)}
         style={{
@@ -38,12 +38,12 @@ const ProfilePicture = () => {
         >
           {/* Front face */}
           <div
-            className="flip-card-front absolute h-full w-full"
+            className="flip-card-front absolute flex h-full w-full items-center justify-center"
             style={{
               backfaceVisibility: "hidden",
             }}
           >
-            <div className="relative -z-0 h-full w-100 overflow-hidden rounded-full mask-b-from-60% opacity-80">
+            <div className="relative -z-0 flex h-full w-full items-center justify-center overflow-hidden rounded-full mask-b-from-60% opacity-80">
               <Image
                 fill
                 priority
@@ -59,13 +59,13 @@ const ProfilePicture = () => {
 
           {/* Back face */}
           <div
-            className="flip-card-back absolute h-full w-full"
+            className="flip-card-back absolute flex h-full w-full items-center justify-center"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
             }}
           >
-            <div className="relative -z-0 h-full w-100 overflow-hidden rounded-full mask-b-from-75% opacity-80">
+            <div className="relative -z-0 flex h-full w-full items-center justify-center overflow-hidden rounded-full mask-b-from-75% opacity-80">
               <Image
                 fill
                 priority

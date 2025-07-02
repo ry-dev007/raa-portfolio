@@ -24,31 +24,57 @@ const Header = () => {
 
   useEffect(() => {
     const updateActiveSection = () => {
-      const sections = [
-        { id: "home", element: document.querySelector("#home") },
-        { id: "about", element: document.querySelector("#about") },
-        { id: "projects", element: document.querySelector("#projects") },
-      ];
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
 
-      const scrollPosition = window.scrollY + 100; // Add offset for header
+      // Get all sections
+      const homeSection = document.querySelector("#home");
+      const aboutSection = document.querySelector("#about");
+      const projectsSection = document.querySelector("#projects");
+      const contactSection = document.querySelector("#contact");
 
-      // Check if we're at the very top of the page
-      if (scrollPosition <= 200) {
+      // Check if we're at the very top
+      if (scrollY <= 100) {
         setActiveSection("home");
         return;
       }
 
-      // Find which section is currently in view
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section.element) {
-          const sectionTop = section.element.offsetTop;
-          if (scrollPosition >= sectionTop) {
-            setActiveSection(section.id);
-            return;
-          }
+      // Check if we're at the bottom (contact section)
+      if (scrollY + windowHeight >= documentHeight - 50) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Check contact section specifically
+      if (contactSection) {
+        const contactTop = contactSection.offsetTop - 200;
+        if (scrollY >= contactTop) {
+          setActiveSection("contact");
+          return;
         }
       }
+
+      // Check projects section
+      if (projectsSection) {
+        const projectsTop = projectsSection.offsetTop - 200;
+        if (scrollY >= projectsTop) {
+          setActiveSection("projects");
+          return;
+        }
+      }
+
+      // Check about section
+      if (aboutSection) {
+        const aboutTop = aboutSection.offsetTop - 200;
+        if (scrollY >= aboutTop) {
+          setActiveSection("about");
+          return;
+        }
+      }
+
+      // Default to home
+      setActiveSection("home");
     };
 
     // Set home as active initially
@@ -58,7 +84,7 @@ const Header = () => {
     window.addEventListener("scroll", updateActiveSection);
 
     // Call once to set initial state
-    setTimeout(updateActiveSection, 100);
+    setTimeout(updateActiveSection, 200);
 
     return () => {
       window.removeEventListener("scroll", updateActiveSection);
@@ -88,6 +114,11 @@ const Header = () => {
       href: "#projects",
       children: "Projects",
       sectionId: "projects",
+    },
+    {
+      href: "#contact",
+      children: "Contact",
+      sectionId: "contact",
     },
   ];
   return (
