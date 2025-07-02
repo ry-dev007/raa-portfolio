@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,34 +21,73 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const sections = [
+        { id: "home", element: document.querySelector("#home") },
+        { id: "about", element: document.querySelector("#about") },
+        { id: "projects", element: document.querySelector("#projects") },
+      ];
+
+      const scrollPosition = window.scrollY + 100; // Add offset for header
+
+      // Check if we're at the very top of the page
+      if (scrollPosition <= 200) {
+        setActiveSection("home");
+        return;
+      }
+
+      // Find which section is currently in view
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.element) {
+          const sectionTop = section.element.offsetTop;
+          if (scrollPosition >= sectionTop) {
+            setActiveSection(section.id);
+            return;
+          }
+        }
+      }
+    };
+
+    // Set home as active initially
+    setActiveSection("home");
+
+    // Add scroll listener
+    window.addEventListener("scroll", updateActiveSection);
+
+    // Call once to set initial state
+    setTimeout(updateActiveSection, 100);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+    };
+  }, []);
+  const getNavItemClass = (sectionId) => {
+    const baseClass = "hover:text-primary transition-colors";
+    const activeClass = "text-primary font-semibold border-b-2 border-primary";
+    return activeSection === sectionId
+      ? `${baseClass} ${activeClass}`
+      : baseClass;
+  };
+
   const navigationItems = [
     {
-      href: "/",
+      href: "#home",
       children: "Home",
-      className: "hover:text-primary transition-colors",
+      sectionId: "home",
       ariaCurrent: "page",
     },
     {
       href: "#about",
       children: "About",
-      className: "hover:text-primary transition-colors",
+      sectionId: "about",
     },
     {
-      href: "/projects",
+      href: "#projects",
       children: "Projects",
-      className: "hover:text-primary transition-colors",
-    },
-    {
-      href: "/resume",
-      children: "Resume",
-      className: "text-primary hover:text-primary transition-colors",
-    },
-    {
-      href: "/contact",
-      children: "Let's Talk",
-      className:
-        "rounded-md bg-amber-700 px-4 py-2 transition-colors hover:bg-amber-600",
-      ariaLabel: "Contact Page",
+      sectionId: "projects",
     },
   ];
   return (
@@ -97,7 +137,7 @@ const Header = () => {
               <CustomLink
                 key={index}
                 href={item.href}
-                className={item.className}
+                className={getNavItemClass(item.sectionId)}
                 ariaLabel={item.ariaLabel}
                 ariaCurrent={item.ariaCurrent}
               >
@@ -153,7 +193,7 @@ const Header = () => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className={`block py-2 text-lg ${item.className}`}
+                    className={`block py-2 text-lg ${getNavItemClass(item.sectionId)}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-label={item.ariaLabel}
                   >
