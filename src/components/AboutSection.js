@@ -63,23 +63,29 @@ export default function AboutSection() {
                 <h3 className="text-primary mb-6 text-2xl font-semibold">
                   {aboutContent.educationTitle}
                 </h3>
-                <ol className="border-primary/30 relative ml-4 border-l-2">
+                <ol className="border-primary/30 relative ml-6 border-l-2">
                   {aboutContent.education.map((edu, idx) => (
-                    <li
-                      key={idx}
-                      className={`ml-6${idx < aboutContent.education.length - 1 ? "mb-8" : ""}`}
-                    >
-                      <span className="bg-primary ring-background absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white ring-4">
+                    <li key={idx} className="relative mb-8 pl-8 last:mb-0">
+                      {/* Step circle */}
+                      <span className="bg-primary ring-background absolute top-0 left-0 z-10 -ml-4 flex h-8 w-8 items-center justify-center rounded-full text-base font-bold text-white ring-4">
                         {idx + 1}
                       </span>
+                      {/* Step content */}
                       <div className="text-muted-foreground text-lg">
                         <span className="text-primary font-semibold">
                           {edu.degree}
                         </span>
                         <br />
-                        {edu.institution},{" "}
-                        <span className="text-sm text-gray-500">
-                          {edu.year}
+                        <span>
+                          {edu.institution}
+                          {edu.year && (
+                            <>
+                              {", "}
+                              <span className="text-sm text-gray-500">
+                                {edu.year}
+                              </span>
+                            </>
+                          )}
                         </span>
                       </div>
                     </li>
