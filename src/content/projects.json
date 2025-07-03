@@ -1,0 +1,39 @@
+{
+  "sectionTitle": "Featured Projects",
+  "subtitle": "A showcase of my recent work and personal projects",
+  "projects": [
+    {
+      "emoji": "🚀",
+      "type": "Project Demo",
+      "title": "E-Commerce Platform",
+      "description": "A full-stack e-commerce solution with user authentication, payment integration, and admin dashboard. Built with modern technologies for optimal performance.",
+      "tech": ["React", "Node.js", "MongoDB", "Stripe"],
+      "links": {
+        "live": "#",
+        "github": "#"
+      }
+    },
+    {
+      "emoji": "📱",
+      "type": "Mobile App",
+      "title": "Task Management App",
+      "description": "A productivity app with real-time collaboration, drag-and-drop functionality, and cross-platform synchronization. Designed for teams and individuals.",
+      "tech": ["React Native", "Firebase", "Redux", "TypeScript"],
+      "links": {
+        "live": "#",
+        "github": "#"
+      }
+    },
+    {
+      "emoji": "🎨",
+      "type": "Design System",
+      "title": "Component Library",
+      "description": "A comprehensive design system and component library with documentation, accessibility features, and theme customization. Used across multiple projects.",
+      "tech": ["React", "Storybook", "Tailwind", "Figma"],
+      "links": {
+        "live": "#",
+        "github": "#"
+      }
+    }
+  ]
+}
