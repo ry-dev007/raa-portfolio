@@ -1,6 +1,7 @@
 // "use client";
 
 import * as motion from "motion/react-client";
+import heroContent from "@/content/hero.json";
 import ProfilePicture from "@/components/profile-picture/ProfilePicture";
 
 export default function HeroSection() {
@@ -45,19 +46,14 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-primary font-secondary mb-6 text-3xl leading-tight font-bold sm:text-4xl"
             >
-              Namaste🙏 I&apos;m Rahul
+              {heroContent.greeting}
             </motion.p>
 
             <motion.p
               variants={itemVariants}
               className="shine-text text-lg leading-relaxed sm:text-xl"
             >
-              I&apos;m a passionate Full-Stack Developer crafting
-              high-performance, scalable, and user-centric web applications.
-              From pixel-perfect frontends to robust backends, I turn ideas into
-              elegant, production-ready solutions. Driven by clean code,
-              intuitive design, and the thrill of problem-solving — I build with
-              purpose and precision. Let&apos;s create something exceptional.
+              {heroContent.description}
             </motion.p>
           </motion.div>
         </div>
@@ -76,19 +72,14 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-primary font-secondary mb-8 text-6xl leading-tight font-bold lg:text-7xl"
             >
-              Namaste🙏 I&apos;m Rahul
+              {heroContent.greeting}
             </motion.p>
 
             <motion.p
               variants={itemVariants}
               className="shine-text max-w-[900px] text-xl leading-relaxed lg:text-2xl"
             >
-              I&apos;m a passionate Full-Stack Developer crafting
-              high-performance, scalable, and user-centric web applications.
-              From pixel-perfect frontends to robust backends, I turn ideas into
-              elegant, production-ready solutions. Driven by clean code,
-              intuitive design, and the thrill of problem-solving — I build with
-              purpose and precision. Let&apos;s create something exceptional.
+              {heroContent.description}
             </motion.p>
           </motion.div>
         </div>
