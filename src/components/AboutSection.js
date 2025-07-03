@@ -1,4 +1,5 @@
 import * as motion from "motion/react-client";
+import aboutContent from "@/content/about.json";
 
 export default function AboutSection() {
   const aboutVariants = {
@@ -37,7 +38,7 @@ export default function AboutSection() {
           {/* Section Title */}
           <motion.div variants={aboutItemVariants} className="text-center">
             <h2 className="text-primary font-secondary mb-4 text-4xl font-bold">
-              About Me
+              {aboutContent.sectionTitle}
             </h2>
             <div className="bg-primary mx-auto h-1 w-20 rounded-full"></div>
           </motion.div>
@@ -50,70 +51,39 @@ export default function AboutSection() {
               className="space-y-6 md:mt-0"
             >
               <h3 className="text-primary text-2xl font-semibold">
-                My Journey
+                {aboutContent.journeyTitle}
               </h3>
+              <p className="text-lg leading-relaxed">{aboutContent.journey}</p>
               <p className="text-lg leading-relaxed">
-                My journey into the world of development began with curiosity
-                and has evolved into a passionate pursuit of creating meaningful
-                digital experiences. I believe in the power of technology to
-                solve real-world problems and make life better for people.
+                {aboutContent.experience}
               </p>
-              <p className="text-lg leading-relaxed">
-                I have over 4 years of experience in software development,
-                working across diverse projects and technologies.
-              </p>
-              <p className="text-lg leading-relaxed">
-                When I&apos;m not coding, you&apos;ll find me exploring new
-                technologies, contributing to open-source projects, or sharing
-                knowledge with the developer community. I&apos;m always eager to
-                learn and grow, staying updated with the latest trends and best
-                practices in web development.
-              </p>
+              <p className="text-lg leading-relaxed">{aboutContent.learning}</p>
               {/* Education Section - Step Form */}
               <div className="pt-4">
                 <h3 className="text-primary mb-6 text-2xl font-semibold">
-                  Education
+                  {aboutContent.educationTitle}
                 </h3>
                 <ol className="border-primary/30 relative ml-4 border-l-2">
-                  <li className="mb-8 ml-6">
-                    <span className="bg-primary ring-background absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white ring-4">
-                      1
-                    </span>
-                    <div className="text-muted-foreground text-lg">
-                      <span className="text-primary font-semibold">
-                        Bachelor of Technology in Computer Science
+                  {aboutContent.education.map((edu, idx) => (
+                    <li
+                      key={idx}
+                      className={`ml-6${idx < aboutContent.education.length - 1 ? "mb-8" : ""}`}
+                    >
+                      <span className="bg-primary ring-background absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white ring-4">
+                        {idx + 1}
                       </span>
-                      <br />
-                      Dummy University,{" "}
-                      <span className="text-sm text-gray-500">2020</span>
-                    </div>
-                  </li>
-                  <li className="mb-8 ml-6">
-                    <span className="bg-primary ring-background absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white ring-4">
-                      2
-                    </span>
-                    <div className="text-muted-foreground text-lg">
-                      <span className="text-primary font-semibold">
-                        Master of Science in Software Engineering
-                      </span>
-                      <br />
-                      Placeholder Institute,{" "}
-                      <span className="text-sm text-gray-500">2022</span>
-                    </div>
-                  </li>
-                  <li className="ml-6">
-                    <span className="bg-primary ring-background absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white ring-4">
-                      3
-                    </span>
-                    <div className="text-muted-foreground text-lg">
-                      <span className="text-primary font-semibold">
-                        Diploma in Web Development
-                      </span>
-                      <br />
-                      Example College,{" "}
-                      <span className="text-sm text-gray-500">2018</span>
-                    </div>
-                  </li>
+                      <div className="text-muted-foreground text-lg">
+                        <span className="text-primary font-semibold">
+                          {edu.degree}
+                        </span>
+                        <br />
+                        {edu.institution},{" "}
+                        <span className="text-sm text-gray-500">
+                          {edu.year}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
                 </ol>
               </div>
             </motion.div>
@@ -123,62 +93,29 @@ export default function AboutSection() {
               variants={aboutItemVariants}
               className="space-y-6 md:mt-0"
             >
-              <h3 className="text-primary text-2xl font-semibold">What I Do</h3>
+              <h3 className="text-primary text-2xl font-semibold">
+                {aboutContent.whatIDoTitle}
+              </h3>
               <div className="space-y-4">
-                <div className="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
-                  <h4 className="text-primary mb-2 font-semibold">
-                    Frontend Development
-                  </h4>
-                  <p className="text-sm">
-                    Creating responsive, interactive user interfaces with React,
-                    Next.js, and modern CSS frameworks. Focus on performance and
-                    user experience.
-                  </p>
-                </div>
-                <div className="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
-                  <h4 className="text-primary mb-2 font-semibold">
-                    Backend Development
-                  </h4>
-                  <p className="text-sm">
-                    Building robust APIs and server-side applications with
-                    Node.js, databases, and cloud services. Emphasis on
-                    scalability and security.
-                  </p>
-                </div>
-                <div className="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
-                  <h4 className="text-primary mb-2 font-semibold">
-                    Full-Stack Solutions
-                  </h4>
-                  <p className="text-sm">
-                    End-to-end application development from concept to
-                    deployment, ensuring seamless integration between frontend
-                    and backend systems.
-                  </p>
-                </div>
+                {aboutContent.whatIDo.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-lg border border-gray-200 p-4 dark:border-gray-700"
+                  >
+                    <h4 className="text-primary mb-2 font-semibold">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm">{item.description}</p>
+                  </div>
+                ))}
               </div>
               {/* Tech Stack */}
               <div>
                 <h3 className="text-primary mb-8 text-center text-2xl font-semibold md:text-left">
-                  Technologies I Work With
+                  {aboutContent.technologiesTitle}
                 </h3>
                 <div className="flex flex-wrap justify-center gap-4 md:justify-start">
-                  {[
-                    "JavaScript",
-                    "TypeScript",
-                    "React",
-                    "Next.js",
-                    "Node.js",
-                    "Python",
-                    "MongoDB",
-                    "PostgreSQL",
-                    "AWS",
-                    "Docker",
-                    "Git",
-                    "Tailwind CSS",
-                    "Express.js",
-                    "REST APIs",
-                    "GraphQL",
-                  ].map((tech, index) => (
+                  {aboutContent.technologies.map((tech, index) => (
                     <span
                       key={index}
                       className="bg-primary/10 text-primary hover:bg-primary/20 rounded-full px-4 py-2 text-sm font-medium transition-colors"

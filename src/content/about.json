@@ -1,0 +1,58 @@
+{
+  "sectionTitle": "About Me",
+  "journeyTitle": "My Journey",
+  "journey": "My journey into the world of development began with curiosity and has evolved into a passionate pursuit of creating meaningful digital experiences. I believe in the power of technology to solve real-world problems and make life better for people.",
+  "experience": "I have over 4 years of experience in software development, working across diverse projects and technologies.",
+  "learning": "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. I'm always eager to learn and grow, staying updated with the latest trends and best practices in web development.",
+  "educationTitle": "Education",
+  "education": [
+    {
+      "degree": "Bachelor of Technology in Computer Science",
+      "institution": "Dummy University",
+      "year": "2020"
+    },
+    {
+      "degree": "Master of Science in Software Engineering",
+      "institution": "Placeholder Institute",
+      "year": "2022"
+    },
+    {
+      "degree": "Diploma in Web Development",
+      "institution": "Example College",
+      "year": "2018"
+    }
+  ],
+  "whatIDoTitle": "What I Do",
+  "whatIDo": [
+    {
+      "title": "Frontend Development",
+      "description": "Creating responsive, interactive user interfaces with React, Next.js, and modern CSS frameworks. Focus on performance and user experience."
+    },
+    {
+      "title": "Backend Development",
+      "description": "Building robust APIs and server-side applications with Node.js, databases, and cloud services. Emphasis on scalability and security."
+    },
+    {
+      "title": "Full-Stack Solutions",
+      "description": "End-to-end application development from concept to deployment, ensuring seamless integration between frontend and backend systems."
+    }
+  ],
+  "technologiesTitle": "Technologies I Work With",
+  "technologies": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "MongoDB",
+    "PostgreSQL",
+    "AWS",
+    "Docker",
+    "Git",
+    "Tailwind CSS",
+    "Express.js",
+    "REST APIs",
+    "GraphQL"
+  ]
+}
