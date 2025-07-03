@@ -1,0 +1,76 @@
+{
+  "sectionTitle": "Get In Touch",
+  "subtitle": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology. Let's connect!",
+  "leftColumn": {
+    "headline": "Let's Start a Conversation",
+    "description": "Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you. I'm currently available for freelance projects and full-time opportunities.",
+    "contactMethods": [
+      {
+        "type": "Email",
+        "icon": "email",
+        "value": "rahul@example.com"
+      },
+      {
+        "type": "Phone",
+        "icon": "phone",
+        "value": "+91 98765 43210"
+      },
+      {
+        "type": "Location",
+        "icon": "location",
+        "value": "Mumbai, India"
+      }
+    ],
+    "social": [
+      {
+        "platform": "X",
+        "icon": "x",
+        "url": "#"
+      },
+      {
+        "platform": "LinkedIn",
+        "icon": "linkedin",
+        "url": "#"
+      },
+      {
+        "platform": "GitHub",
+        "icon": "github",
+        "url": "#"
+      }
+    ]
+  },
+  "rightColumn": {
+    "headline": "Send Me a Message",
+    "form": {
+      "fields": [
+        {
+          "id": "name",
+          "label": "Name",
+          "placeholder": "Your name",
+          "type": "text"
+        },
+        {
+          "id": "email",
+          "label": "Email",
+          "placeholder": "your.email@example.com",
+          "type": "email"
+        },
+        {
+          "id": "subject",
+          "label": "Subject",
+          "placeholder": "What's this about?",
+          "type": "text"
+        },
+        {
+          "id": "message",
+          "label": "Message",
+          "placeholder": "Tell me about your project or just say hello!",
+          "type": "textarea",
+          "rows": 6
+        }
+      ],
+      "buttonText": "Send Message",
+      "buttonLoadingText": "Sending..."
+    }
+  }
+}
